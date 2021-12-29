@@ -16,11 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: "Build the Docker image"
-        run: docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}:latest --tag ${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
-
       - name: "Login to registry"
         run: echo ${{ secrets.PACKAGES_GITHUB_PAT }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: "Publish the Docker image"
+        run: docker pull ${{ env.IMAGE_NAME }}:latest
+
+      - name: "Build the Docker image"
+        run: docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}:latest --tag ${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
 
       - name: "Publish the Docker image"
         run: docker push -a ${{ env.IMAGE_NAME }}
