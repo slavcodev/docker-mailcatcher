@@ -17,7 +17,7 @@ which catches any message sent to it to display in a web interface.
 
 ## Installation
 
-Pull the image from the [GitHub Package Registry][link-github-package].
+Pull the image from the [Container registry][link-github-package].
 This is the recommended method of installation as it is easier to update image.
 
 ```bash
@@ -55,7 +55,7 @@ docker run --name='mailcatcher' -d --publish=1080:1080 --publish=1025:1025 \
 
 # Publish changes
 
-The image is hosted on [GitHub Package Registry][link-github-package].
+The image is hosted on [Container registry][link-github-package].
 
 Read the [Working with the Container registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry) 
 to learn how to publish new version of image.
