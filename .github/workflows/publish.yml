@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  build:
+  publish:
     runs-on: ubuntu-latest
 
     env:
@@ -20,7 +20,7 @@ jobs:
         run: docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}:latest --tag ${{ env.IMAGE_NAME }}:${{ env.IMAGE_VERSION }}
 
       - name: "Login to registry"
-        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        run: echo ${{ secrets.PACKAGES_GITHUB_PAT }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: "Publish the Docker image"
         run: docker push -a ${{ env.IMAGE_NAME }}
